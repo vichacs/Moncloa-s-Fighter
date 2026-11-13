@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<title>Moncloa's Fighter — Jugar</title>
+<!-- El juego. La portada (landing) es index.html y enlaza aquí. -->
+<!-- pantalla completa en móviles: al añadirlo a la pantalla de inicio se abre sin barras del navegador -->
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#05050b">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Moncloa's Fighter">
+<link rel="apple-touch-icon" href="assets/ui/icon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<style>
+  html, body { margin: 0; height: 100%; background: #05050b; overflow: hidden; overscroll-behavior: none; -webkit-text-size-adjust: 100%; }
+  body { position: fixed; inset: 0; } /* sin rebote ni desplazamiento: las barras del navegador no bailan */
+  body { display: flex; align-items: center; justify-content: center; }
+  :root { --ar: 1.7778; }
+  canvas { width: min(100vw, calc(100vh * var(--ar))); height: min(100vh, calc(100vw / var(--ar))); background: #000; display: block; image-rendering: pixelated; touch-action: none; }
+  /* dvh = alto que queda de verdad con las barras del navegador a la vista: así el juego nunca queda tapado ni cortado */
+  @supports (height: 100dvh) { canvas { width: min(100vw, calc(100dvh * var(--ar))); height: min(100dvh, calc(100vw / var(--ar))); } }
+  @font-face { font-family: "RotuloArcade"; src: url("assets/ui/rotulos.ttf?v=20261111f") format("truetype"); font-display: block; }
+  .preload { font-family: "Press Start 2P"; position: absolute; opacity: 0; }
+  .preload2 { font-family: "RotuloArcade"; position: absolute; opacity: 0; }
+</style>
+</head>
+<body>
+<span class="preload">MONCLOA ñ ¡!</span><span class="preload2">MONCLOA ñ ¡!</span>
+<canvas id="game" width="1280" height="720"></canvas>
+<script>if ('serviceWorker' in navigator && location.protocol === 'https:') navigator.serviceWorker.register('sw.js').catch(() => {}); // pantalla sin conexión para la app de Android</script>
+<script src="js/sprites-meta.js?v=20261113h"></script>
+<script src="js/roturas-meta.js?v=20261112a"></script>
+<script src="js/props-extra.js?v=20261112a"></script>
+<script src="js/data.js?v=20261113h"></script>
+<script src="js/stage-video.js?v=20261111f"></script>
+<script src="js/titulos-meta.js?v=20261111f"></script>
+<script src="js/stats.js?v=20261111f"></script>
+<script src="js/audio.js?v=20261111f"></script>
+<script src="js/vfx-spritefusion.js?v=20261111f"></script>
+<script src="js/game.js?v=20261113m"></script>
+<script src="js/touch.js?v=20261113t" onerror="var s=document.createElement('script');s.src='js/touch.js?v=20261113t&r='+Date.now();document.body.appendChild(s)"></script>
+</body>
+</html>
